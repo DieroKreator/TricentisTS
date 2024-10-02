@@ -2,24 +2,24 @@ import { test, expect, Locator } from '@playwright/test';
 
 test.describe('Enter Vehicle Data Form Tests', () => {
 
-  class LandingPage {
+  // class LandingPage {
 
-    private page: any;
-    readonly nextButton: Locator;
+  //   private page: any;
+  //   readonly nextButton: Locator;
 
-    constructor(page: any) {
-      this.page = page;
-      this.nextButton = page.locator('#nextenterinsurantdata');
-    }
+  //   constructor(page: any) {
+  //     this.page = page;
+  //     this.nextButton = page.locator('#nextenterinsurantdata');
+  //   }
 
-    async validateTitle(title){
-      await expect(this.page).toHaveTitle(title);
-    }
+  //   async validateTitle(title){
+  //     await expect(this.page).toHaveTitle(title);
+  //   }
 
-    async clickNextButton(){
-      await this.nextButton.click();
-    }
-  }
+  //   async clickNextButton(){
+  //     await this.nextButton.click();
+  //   }
+  // }
 
   test.beforeEach(async ({ page }) => {
     await page.goto('https://sampleapp.tricentis.com/101/app.php');
