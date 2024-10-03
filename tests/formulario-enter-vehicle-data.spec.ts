@@ -1,28 +1,11 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from '../pages/home-page';
+import { SendQuotePage } from '../pages/send-quote-page';
 
 test.describe('Enter Vehicle Data Form Tests', () => {
 
-  // class LandingPage {
-
-  //   private page: any;
-  //   readonly nextButton: Locator;
-
-  //   constructor(page: any) {
-  //     this.page = page;
-  //     this.nextButton = page.locator('#nextenterinsurantdata');
-  //   }
-
-  //   async validateTitle(title){
-  //     await expect(this.page).toHaveTitle(title);
-  //   }
-
-  //   async clickNextButton(){
-  //     await this.nextButton.click();
-  //   }
-  // }
-
   test.beforeEach(async ({ page }) => {
-    await page.goto('https://sampleapp.tricentis.com/101/app.php');
+    await page.goto('http://sampleapp.tricentis.com/101/app.php');
     await expect(page).toHaveTitle(/Vehicle Data/);
   });
 
@@ -31,15 +14,32 @@ test.describe('Enter Vehicle Data Form Tests', () => {
   });
 
   test('Enviar Enter vehicle Data Form', async ({ page }) => {
-    const makeLabel = await page.locator('label.main', { hasText: 'Make' });
-    await expect(makeLabel).toBeVisible();
+    let homePage = new HomePage(page)
+    let sendQuotePagePage = new SendQuotePage(page)
+
+    // Validar titulo ao abrir a pagina Home
+    // homePage.validateTitle('Tricentis Vehicle Insurance')
+    // homePage.clickGetQuoteButton()
+
+    // Validar titulo ao abrir a pagina SendQuote
+    sendQuotePagePage.validarTitle('Enter Vehicle Data')
+    sendQuotePagePage.validarMakeLabel();
+
+    // Selecionar o make
     await page.selectOption('#make', { value: 'BMW'});
+    // Selecionar um modelo
     await page.selectOption('#model', { value: 'Motorcycle'});
+
+    // Preencher campos Cylinder e Engine
     await page.fill('#cylindercapacity', '1000');
     await page.fill('#engineperformance', '200');
+
+    // Selecionar uma data
     /* Improve */
-    await page.fill('#dateofmanufacture', '10/01/2024');
+    await page.fill('#dateofmanufacture', '10/03/2024');
+    //Selecionar o numero de cadeiras
     await page.selectOption('#numberofseats', { value: '3'});
+
     // await page.check('input[id="righthanddriveyes"]');
     await page.selectOption('#numberofseatsmotorcycle', { value: '3'});
     await page.selectOption('#fuel', { value: 'Diesel'});
