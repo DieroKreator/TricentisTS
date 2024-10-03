@@ -15,7 +15,7 @@ export class SendQuotePage{
         this.makeLabel = page.locator('label.main', { hasText: 'Make' });
         this.nextButton = page.locator('#nextenterinsurantdata');
         this.firstNameLabel = page.locator('label.main');
-        this.skydivingLabel = page.locator('label:has-text("Skydiving")');
+        this.skydivingLabel = page.locator('//label[contains(., "Skydiving")]/input');
         this.nextProductButton = page.locator('#nextenterproductdata');
         this.startDateLabel = page.locator('label.main');
     }
@@ -108,7 +108,7 @@ export class SendQuotePage{
     }
 
     async selecionarHobbies() {
-        await this.skydivingLabel.click();
+        await this.skydivingLabel.check();
         await expect(this.skydivingLabel).toBeChecked();
     }
 

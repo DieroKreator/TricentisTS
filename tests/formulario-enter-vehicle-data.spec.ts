@@ -62,7 +62,12 @@ test.describe('Enter Vehicle Data Form Tests', () => {
     sendQuotePagePage.preencherZipcode('1252014');
     sendQuotePagePage.selecionarOccupation('Employee');
 
+    // Tried different strategies to interact with this element but without success,
+    // I would ask on development if they can improve this. 
+    // Checkbox input itself is hidden using position: absolute; left: -9999px
+    
     /* Selecionar Hobbies com validação */
+    await page.check('input[value="Skydiving"]');
     await sendQuotePagePage.selecionarHobbies();
 
     /* Navegar a proxima tela do formulario com validação */
