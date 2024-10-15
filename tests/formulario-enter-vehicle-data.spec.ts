@@ -16,51 +16,51 @@ test.describe('Enter Vehicle Data Form Tests', () => {
 
   test('Enviar Enter vehicle Data Form', async ({ page }) => {
     let homePage = new HomePage(page);
-    let sendQuotePagePage = new SendQuotePage(page);
+    let sendQuotePage = new SendQuotePage(page);
 
     // Validar titulo ao abrir a pagina Home
     /* homePage.validateTitle('Tricentis Vehicle Insurance')
     homePage.clickGetQuoteButton()*/
 
     // Validar titulo ao abrir a pagina SendQuote
-    sendQuotePagePage.validarTitle('Enter Vehicle Data');
-    sendQuotePagePage.validarMakeLabel();
+    sendQuotePage.validarTitle('Enter Vehicle Data');
+    sendQuotePage.validarMakeLabel();
 
-    sendQuotePagePage.selecionarMake('BMW');
-    sendQuotePagePage.selecionarModel('Motorcycle');
+    sendQuotePage.selecionarMake('BMW');
+    sendQuotePage.selecionarModel('Motorcycle');
 
     // Preencher campos 
-    await sendQuotePagePage.preencherCylinderCapacity('1000');
-    await sendQuotePagePage.preencherEnginePerformance('200');
+    await sendQuotePage.preencherCylinderCapacity('1000');
+    await sendQuotePage.preencherEnginePerformance('200');
 
     // Selecionar uma data
     /* Improve */
     await page.fill('#dateofmanufacture', '10/03/2024');
 
     //Selecionar o numero de cadeiras
-    await sendQuotePagePage.selecionarNumberofseats('3');
+    await sendQuotePage.selecionarNumberofseats('3');
 
     // await page.check('input[id="righthanddriveyes"]');
-    await sendQuotePagePage.selecionarNumberofseatsmotorcycle('3');
-    await sendQuotePagePage.selecionarFuel('Diesel');
+    await sendQuotePage.selecionarNumberofseatsmotorcycle('3');
+    await sendQuotePage.selecionarFuel('Diesel');
 
     //Preencher campos
-    await sendQuotePagePage.preencherPayload('197');
-    await sendQuotePagePage.preencherTotalweight('197');
-    await sendQuotePagePage.preencherListprice('80000');
-    await sendQuotePagePage.preencherAnnualmileage('20000');
+    await sendQuotePage.preencherPayload('197');
+    await sendQuotePage.preencherTotalweight('197');
+    await sendQuotePage.preencherListprice('80000');
+    await sendQuotePage.preencherAnnualmileage('20000');
 
     /* Click over Next button and navigate to next screen */
-    await sendQuotePagePage.clickNextButton();
+    await sendQuotePage.clickNextButton();
     /* Validar elemento na nova tela */
-    sendQuotePagePage.validarFirstNameLabel('First Name');
+    sendQuotePage.validarFirstNameLabel('First Name');
 
-    sendQuotePagePage.preencherFirstName('Charlie');
-    sendQuotePagePage.preencherLastName('Kamp');
-    sendQuotePagePage.preencherBirthdate('10/01/2000');
-    sendQuotePagePage.selecionarCountry('Angola');
-    sendQuotePagePage.preencherZipcode('1252014');
-    sendQuotePagePage.selecionarOccupation('Employee');
+    sendQuotePage.preencherFirstName('Charlie');
+    sendQuotePage.preencherLastName('Kamp');
+    sendQuotePage.preencherBirthdate('10/01/2000');
+    sendQuotePage.selecionarCountry('Angola');
+    sendQuotePage.preencherZipcode('1252014');
+    sendQuotePage.selecionarOccupation('Employee');
 
     // Tried different strategies to interact with this element but without success,
     // I would ask on development if they can improve this. 
@@ -68,10 +68,10 @@ test.describe('Enter Vehicle Data Form Tests', () => {
     
     /* Selecionar Hobbies com validação */
     await page.check('input[value="Skydiving"]');
-    await sendQuotePagePage.selecionarHobbies();
+    await sendQuotePage.selecionarHobbies();
 
     /* Navegar a proxima tela do formulario com validação */
-    sendQuotePagePage.clickNextProductButton();
-    sendQuotePagePage.validarStartDateLabel('Start Date');
+    sendQuotePage.clickNextProductButton();
+    sendQuotePage.validarStartDateLabel('Start Date');
   });
 });
